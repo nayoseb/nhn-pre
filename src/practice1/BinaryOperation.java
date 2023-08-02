@@ -1,4 +1,4 @@
-package practice;
+package practice1;
 
 @FunctionalInterface
 public interface BinaryOperation {      //super타입  //interface조건기술

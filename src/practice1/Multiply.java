@@ -1,4 +1,4 @@
-package practice;
+package practice1;
 
 
 public final class Multiply implements BinaryOperation{  //sub타입

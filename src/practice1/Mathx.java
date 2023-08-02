@@ -1,4 +1,4 @@
-package practice;
+package practice1;
 
 public class Mathx {
     public static double product(double x, double y) {

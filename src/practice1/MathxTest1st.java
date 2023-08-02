@@ -1,7 +1,7 @@
-package practice;
+package practice1;
 
 
-public class MathxTest {  //name space
+public class MathxTest1st {  //name space
     public static void main(String[] args) {
         // Heap - reference count
         double[] numbers = new double[args.length];  //reference count 1증가
