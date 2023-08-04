@@ -6,7 +6,7 @@ public class FibonacciTest {
     public static void baseCase() {
         if(fibonacci(0) == 0 && fibonacci(1) == 1)
             return;
-            System.exit(1);   
+                System.exit(1);   
     }
     public static void testRecursionCase() {
 
@@ -14,7 +14,7 @@ public class FibonacciTest {
         for(int[] answer:answers)
             if (answer[1] != fibonacci(answer [0]))
                     System.exit(1);
-        return;
+                return;
 
         // in[] answers = {0, 1, 1, 2 ,3, 5};
         // for (int index = 0; index < answers.length; index++) {

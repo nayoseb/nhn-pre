@@ -8,8 +8,8 @@ public class Mathx {
         return n*(n+1)/2;
     }
     // sum :: int -> int
-    public static int sum(int min, int max){   //잘못된함수
-        return sum(max)-sum(min-1);
+    public static int sum(Range range){   //잘못된함수
+        return sum(range.getupperBound()- sum(range.getlowerBound()-1));
     }
     public static double sum(double... numbers){
         return Mathx.reduce(new Plus(), 0, numbers);
@@ -54,5 +54,12 @@ public class Mathx {
             if (predicate.apply(number))
                 result = binaryOperation.apply(result, number);
         return result;
+    }
+    public static int gcd(int a, int b) {
+        if(b == 0) {
+            return a;
+        } else {
+            return gcd(b, a % b);
+        }
     }
 }
