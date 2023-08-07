@@ -1,54 +1,12 @@
 package practice1;
 
+import java.util.function.Predicate;
+
 public class FractionTest {
 
     private FractionTest() {}
 
-    // 아래3개 Abstraction barrier
-    public static int[] fractional(int numorator, int denomiator) { //constructor
-        if(denomiator == 0)
-            throw new IllegalArgumentException("분자가 0이야! 다시");
-        int[] rep = new int[] {numorator, denomiator};
-        normalize(rep);     // 기약분수로 만듬
-        classInvariant(rep); //기약분수인지 확인
-        return rep;
-    }
 
-    public static void classInvariant(int[] fraction) {
-        int num = fraction[0];
-        int den = fraction[1];
-        if(Mathx.gcd(num, den) != 1) {
-            throw new IllegalArgumentException("기약분수가 아닙니다");
-        }
-    }
-    
-
-    public static int numerator(int[] r) { // 분자 돌려줌 getter
-        normalize(r);
-        return r[0];
-    }
-    public static int denomiator(int[] r) { // 분모 돌려줌 getter
-        normalize(r);
-        return r[1];
-    }
-    private static int[] add(int[] f1, int[] f2) {
-        return fractional(numerator(f1) * denomiator(f2) + numerator(f2) * denomiator(f1), 
-                        denomiator(f1) * denomiator(f2));
-    }
-    private static String toString(int[] add) {
-
-        return numerator(add)/Mathx.gcd(numerator(add),denomiator(add)) +"/"+ 
-                    denomiator(add)/Mathx.gcd(numerator(add),denomiator(add));
-     }
-    private static void normalize(int[] r){
-        int g = Mathx.gcd(r[0], r[1]);
-        r[0]/=g;
-        r[1]/=g;
-    }
-
-     public static boolean equals(int[] x, int[] y){
-        return numerator(x)==numerator(y)&&denomiator(x)==denomiator(y);
-     }
     public static void main(String[] args) {
         // 유리수(정수) 4개 args에서 덧셈공식, 4개 못채우면 계속반복
         // args 4개가 정수만 들어오면 1단계 통과(에러처리 통과)
@@ -74,13 +32,19 @@ public class FractionTest {
         // n2 /= i;
         // }
         // }
-        int[][] rs = {fractional(1, 2),
-                fractional(2, 4),
-                // fractional(4, 8),
-                fractional(5,10) 
+        Fractional[] rs = { new Fractional(1, 2),
+                new Fractional(2, 4),
+                new Fractional(4, 8),
+                new Fractional(5,10) 
             };
-        for(int[] r : rs)
-            System.out.println(toString(r));
+        for(Fractional r : rs)
+            System.out.println(r.floatValue());
+
+            Predicate<Fractional> ok = x -> true;
+            System.out.println(Mathx.<Fractional>reduceIf(ok, Fractional::add, rs[0],rs[1],rs[2],rs[3])); 
+        // Fractional r = rs[0];
+        // Object e = rs[1];
+        // r.equals(r);
 
         // System.out.println(x==y);                       // [] 주소값이 다르니 false
 
